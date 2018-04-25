@@ -62,6 +62,15 @@ class Api::V1::PhotosController < ApiController
     end
   end
 
+  #利用postman 使用DELETE  http://localhost:3000/api/v1/photos/:id 帶入參數
+  def destroy
+    @photo = Photo.find_by(id: params[:id])
+    @photo.destroy
+    render json: {
+      message: "Photo destroy successfully!"
+    }    
+  end
+
   private
 
   #沒有特別寫入require(:photo)，直接以parameters包覆，回傳的格式是json
