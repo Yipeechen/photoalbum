@@ -1,4 +1,6 @@
 class Api::V1::PhotosController < ApiController
+  before_action :authenticate_user!, except: :index
+  
   def index
     @photos = Photo.all
     #當有多筆資料時習慣在資料外包覆一層json: { data: @varrible }
