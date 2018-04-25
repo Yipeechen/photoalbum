@@ -45,7 +45,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
   end
 
-
+  #搭配form_for 所以中間加一層require(:photo) ，故回傳的params hash外層會打包一層photo:{...}
   def photo_params
     params.require(:photo).permit(:title, :date, :description, :file_location)
   end
