@@ -47,6 +47,21 @@ class Api::V1::PhotosController < ApiController
     end
   end
 
+  #利用postman 使用PATCH  http://localhost:3000/api/v1/photos/:id 帶入參數
+  def update
+    @photo = Photo.find_by(id: params[:id])
+    if @photo.update(photo_params)
+      render json: {
+        message: "Photo updated successfully!",
+        result: @photo
+      }
+    else
+      render json: {
+        errors: @photo.errors
+      }
+    end
+  end
+
   private
 
   #沒有特別寫入require(:photo)，直接以parameters包覆，回傳的格式是json
